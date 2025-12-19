@@ -1,22 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:polaris/pages/todo.dart';
 
-class Task extends StatelessWidget {
+class Task extends StatefulWidget {
   const Task({super.key});
 
-  //addNewTask method
+  @override
+  State<Task> createState() => _TaskState();
+}
+
+class _TaskState extends State<Task> {
+  //to do list LIST
+  List todoList = ["task1", "task2"];
+
+  final _todoTask = TextEditingController();
+
+  //addNewTask dialog box
   void addNewTask(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("New Task"),
+          backgroundColor: Color(0xFFC2A273),
+          title: Text(
+            "New Task",
+            style: TextStyle(
+              fontFamily: "Miniver",
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF141C2F),
+            ),
+          ),
 
-          content: Container(
+          content: SizedBox(
             height: 120,
             child: Column(
               children: [
-                TextField(decoration: InputDecoration(label: Text("Task"))),
+                TextField(
+                  decoration: InputDecoration(
+                    label: Text(
+                      "Task",
+                      // style: TextStyle(
+                      //   fontFamily: "AverialLibre",
+                      //   fontSize: 17,
+                      //   decorationColor: Color(0xFF141C2F),
+                      // ),
+                    ),
+                  ),
+                  controller: _todoTask,
+                ),
                 TextField(
                   decoration: InputDecoration(label: Text("Task Details")),
                 ),
@@ -25,7 +56,14 @@ class Task extends StatelessWidget {
           ),
 
           actions: [
-            MaterialButton(onPressed: () {}, child: Text("Ok")),
+            MaterialButton(
+              onPressed: () {
+                todoList.add(_todoTask.text);
+                Navigator.pop(context);
+                _todoTask.clear();
+              },
+              child: Text("Ok"),
+            ),
 
             MaterialButton(
               onPressed: () {
@@ -39,63 +77,129 @@ class Task extends StatelessWidget {
     );
   }
 
+  //home page
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF38404F),
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Color(0xFF141C2F),
         title: Text(
           "My To Do List",
           style: TextStyle(
             fontFamily: "Miniver",
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            color: Colors.deepPurple,
+            color: Color(0xFFA1772D),
           ),
         ),
       ),
 
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      // body: Row(
+      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //   children: [
+      //     Expanded(
+      //       child: Container(
+      //         height: 50,
+      //         margin: const EdgeInsets.all(15.0),
+      //         decoration: BoxDecoration(
+      //           borderRadius: BorderRadius.circular(15),
+      //           color: Color(0xFFC2A273),
+      //         ),
+      //         child: Center(
+      //           child: Text(
+      //             "Date",
+      //             style: TextStyle(
+      //               fontFamily: "AverialLibre",
+      //               fontSize: 20,
+      //               fontWeight: FontWeight.w500,
+      //               color: Color(0xFF292B3A),
+      //             ),
+      //           ),
+      //         ),
+      //       ),
+      //     ),
+
+      //     Expanded(
+      //       child: Container(
+      //         height: 50,
+      //         margin: const EdgeInsets.only(right: 15, top: 15, bottom: 15),
+      //         decoration: BoxDecoration(
+      //           borderRadius: BorderRadius.circular(15),
+      //           color: Color(0xFFC2A273),
+      //         ),
+      //         child: Center(
+      //           child: Text(
+      //             "RewardTime",
+      //             style: TextStyle(
+      //               fontFamily: "AverialLibre",
+      //               fontSize: 20,
+      //               fontWeight: FontWeight.w500,
+      //               color: Color(0xFF292B3A),
+      //             ),
+      //           ),
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
+      body: Column(
         children: [
-          Expanded(
-            child: Container(
-              height: 50,
-              color: Colors.blue,
-              margin: const EdgeInsets.all(20.0),
-              // decoration: BoxDecoration(
-              //   borderRadius: BorderRadius.circular(24),
-              // ),
-              child: Center(
-                child: Text(
-                  "Date",
-                  style: TextStyle(
-                    fontFamily: "AverialLibre",
-                    fontSize: 23,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: Container(
+                  height: 50,
+                  margin: const EdgeInsets.all(15.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Color(0xFFC2A273),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Date",
+                      style: TextStyle(
+                        fontFamily: "AverialLibre",
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xFF292B3A),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+
+              Expanded(
+                child: Container(
+                  height: 50,
+                  margin: const EdgeInsets.only(right: 15, top: 15, bottom: 15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Color(0xFFC2A273),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "RewardTime",
+                      style: TextStyle(
+                        fontFamily: "AverialLibre",
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xFF292B3A),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
 
           Expanded(
-            child: Container(
-              height: 50,
-              color: Colors.blue,
-              margin: const EdgeInsets.only(right: 20, top: 20, bottom: 20),
-              child: Center(
-                child: Text(
-                  "hello",
-                  style: TextStyle(
-                    fontFamily: "AverialLibre",
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
+            child: ListView.builder(
+              itemCount: todoList.length,
+              itemBuilder: (context, index) {
+                return ToDoList(taskName: todoList[index]);
+              },
             ),
           ),
         ],
@@ -103,8 +207,10 @@ class Task extends StatelessWidget {
 
       //body: ListView(children: [ToDoList(taskName: "task1")]),
       floatingActionButton: FloatingActionButton(
+        shape: CircleBorder(),
+        backgroundColor: Color(0xFFC3A372),
         onPressed: () => addNewTask(context),
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color: Color(0xFF292B3A)),
       ),
     );
   }

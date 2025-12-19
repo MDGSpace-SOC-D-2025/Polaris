@@ -10,32 +10,34 @@ class ToDoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(20),
+      margin: EdgeInsets.only(top: 20, left: 20, right: 20),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.green,
+        //color: Colors.green,
         borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: Color(0xFFF6F2E5)),
       ),
       child: Row(
         children: [
-          Text(
-            "do homework",
-            style: TextStyle(
-              fontFamily: "AverialLibre",
-              fontSize: 20,
-              fontWeight: FontWeight.normal,
-              color: Colors.white,
-            ),
-          ),
-
           Checkbox(
             value: taskDone,
+            side: BorderSide(color: Color(0xFFF6F2E5)),
             activeColor: Colors.amber,
             onChanged: (bool? newValue) {
               setState(() {
                 taskDone = newValue!;
               });
             },
+          ),
+
+          Text(
+            taskName,
+            style: TextStyle(
+              fontFamily: "AverialLibre",
+              fontSize: 20,
+              fontWeight: FontWeight.normal,
+              color: Color(0xFFF6F2E5),
+            ),
           ),
         ],
       ),
