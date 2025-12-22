@@ -11,12 +11,14 @@ class ToDoList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-      padding: EdgeInsets.all(20),
+      height: 60,
+      padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
         //color: Colors.green,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Color(0xFFF6F2E5)),
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: Color(0xFF141C2F)),
       ),
+
       child: Row(
         children: [
           Checkbox(

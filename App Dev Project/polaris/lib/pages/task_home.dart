@@ -21,6 +21,9 @@ class _TaskState extends State<Task> {
       builder: (context) {
         return AlertDialog(
           backgroundColor: Color(0xFFC2A273),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25),
+          ),
           title: Text(
             "New Task",
             style: TextStyle(
@@ -95,54 +98,6 @@ class _TaskState extends State<Task> {
         ),
       ),
 
-      // body: Row(
-      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //   children: [
-      //     Expanded(
-      //       child: Container(
-      //         height: 50,
-      //         margin: const EdgeInsets.all(15.0),
-      //         decoration: BoxDecoration(
-      //           borderRadius: BorderRadius.circular(15),
-      //           color: Color(0xFFC2A273),
-      //         ),
-      //         child: Center(
-      //           child: Text(
-      //             "Date",
-      //             style: TextStyle(
-      //               fontFamily: "AverialLibre",
-      //               fontSize: 20,
-      //               fontWeight: FontWeight.w500,
-      //               color: Color(0xFF292B3A),
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-
-      //     Expanded(
-      //       child: Container(
-      //         height: 50,
-      //         margin: const EdgeInsets.only(right: 15, top: 15, bottom: 15),
-      //         decoration: BoxDecoration(
-      //           borderRadius: BorderRadius.circular(15),
-      //           color: Color(0xFFC2A273),
-      //         ),
-      //         child: Center(
-      //           child: Text(
-      //             "RewardTime",
-      //             style: TextStyle(
-      //               fontFamily: "AverialLibre",
-      //               fontSize: 20,
-      //               fontWeight: FontWeight.w500,
-      //               color: Color(0xFF292B3A),
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
       body: Column(
         children: [
           Row(
@@ -150,8 +105,8 @@ class _TaskState extends State<Task> {
             children: [
               Expanded(
                 child: Container(
-                  height: 50,
-                  margin: const EdgeInsets.all(15.0),
+                  height: 40,
+                  margin: const EdgeInsets.only(right: 15, top: 15, left: 15),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: Color(0xFFC2A273),
@@ -172,8 +127,8 @@ class _TaskState extends State<Task> {
 
               Expanded(
                 child: Container(
-                  height: 50,
-                  margin: const EdgeInsets.only(right: 15, top: 15, bottom: 15),
+                  height: 40,
+                  margin: const EdgeInsets.only(right: 15, top: 15),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: Color(0xFFC2A273),
@@ -205,7 +160,6 @@ class _TaskState extends State<Task> {
         ],
       ),
 
-      //body: ListView(children: [ToDoList(taskName: "task1")]),
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
         backgroundColor: Color(0xFFC3A372),
