@@ -1,4 +1,4 @@
-const toDoServices = require('./services/todo.services');
+const toDoServices = require('../services/todo.services');
 
 exports.toDoList = async(req,res,next) => {
     try{
@@ -10,4 +10,4 @@ exports.toDoList = async(req,res,next) => {
     }
 }
 
-// module.exports = toDoList;
+//module.exports = toDoList;

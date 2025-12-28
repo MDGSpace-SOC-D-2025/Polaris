@@ -1,4 +1,4 @@
-const toDoModel = require('./model/todo.model');
+const toDoModel = require('../model/todo.model');
 
 class toDoServices{
     static async toDoList (taskName) {

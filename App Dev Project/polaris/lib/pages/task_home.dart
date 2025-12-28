@@ -61,7 +61,9 @@ class _TaskState extends State<Task> {
           actions: [
             MaterialButton(
               onPressed: () {
-                todoList.add(_todoTask.text);
+                setState(() {
+                  todoList.add(_todoTask.text);
+                });
                 Navigator.pop(context);
                 _todoTask.clear();
               },
