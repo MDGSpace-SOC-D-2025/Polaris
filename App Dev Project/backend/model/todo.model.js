@@ -1,5 +1,5 @@
-const monogdb = require('../config/monogdb');
-const mongoose = require('mongoose');
+const monogdb = require('../config/monogdb')
+const mongoose = require('mongoose')
 
 const toDoSchema = new mongoose.Schema({
     taskName: {
@@ -12,6 +12,6 @@ const toDoSchema = new mongoose.Schema({
     }
 });
 
-const toDoModel = mongoose.model('todo', toDoSchema);
+const toDoModel = mongoose.model('todo', toDoSchema)
 
-module.exports = toDoModel;
+module.exports = toDoModel
