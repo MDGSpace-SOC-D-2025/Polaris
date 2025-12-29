@@ -90,7 +90,7 @@ class _TaskState extends State<Task> {
       appBar: AppBar(
         backgroundColor: Color(0xFF141C2F),
         title: Text(
-          "My To Do List",
+          "To Do List",
           style: TextStyle(
             fontFamily: "Miniver",
             fontSize: 32,
