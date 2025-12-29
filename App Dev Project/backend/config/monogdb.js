@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
 
-const connection = mongoose.createConnection('mongodb://localhost:27017').on('open',()=>{
-    console.log('monogdb is connected');
-}).on('error',()=> {
-    console.log('monogdb is not connected'); 
-});
+const connection = mongoose.connect('mongodb://127.0.0.1:27017/database').then(()=>{
+    console.log('connected to database')
+})
 
 module.exports = connection;

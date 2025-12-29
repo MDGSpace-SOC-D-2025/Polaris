@@ -1,13 +1,13 @@
-const toDoServices = require('../services/todo.services');
+const toDoModel = require("../model/todo.model");
 
-exports.toDoList = async(req,res,next) => {
-    try{
-        const {taskName} = req.body;
-        let todo = await toDoServices.toDoList(taskName);
-        res.json({status: true, success: todo});
-    }catch (error) {
-        next(error)
-    }
-}
+exports.addToDo = async (req, res) => {
+  await toDoModel.create(req.body);
+  res.json({ message: "Todo added" });
+};
 
-//module.exports = toDoList;
+exports.deleteToDo = async (req, res) => {
+  await toDoModel.findByIdAndDelete(req.params.id);
+  res.json({ message: "Todo deleted" });
+};
+
+module.exports;
