@@ -10,6 +10,8 @@ app.listen(port,()=>{
     console.log('server listening on port')
 })
 
+app.use('/todo',toDoRouter)
+
 toDoModel.create({
   taskName: 'do homework'
 })
