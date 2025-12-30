@@ -1,4 +1,4 @@
-const monogdb = require('../config/monogdb')
+const mongodb = require('../config/mongodb')
 const mongoose = require('mongoose')
 
 const toDoSchema = new mongoose.Schema({

@@ -1,5 +1,5 @@
 const app = require('./app')
-const monogdb = require('./config/monogdb')
+const mongodb = require('./config/mongodb')
 const toDoModel = require('./model/todo.model')
 const toDoRouter = require('./routers/todo.router')
 const toDoController = require('./controller/todo.controller')
