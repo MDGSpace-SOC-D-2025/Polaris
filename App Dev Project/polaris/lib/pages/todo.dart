@@ -8,10 +8,10 @@ class ToDoList extends StatefulWidget {
   ToDoList({super.key, required this.taskName, this.taskDone = false});
 
   @override
-  State<ToDoList> createState() => _ToDoListState();
+  State<ToDoList> createState() => ToDoListState();
 }
 
-class _ToDoListState extends State<ToDoList> {
+class ToDoListState extends State<ToDoList> {
   @override
   Widget build(BuildContext context) {
     return Container(

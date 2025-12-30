@@ -12,7 +12,7 @@ class _TaskState extends State<Task> {
   //to do list LIST
   List todoList = ["task1", "task2"];
 
-  final _todoTask = TextEditingController();
+  final todoTask = TextEditingController();
 
   //addNewTask dialog box
   void addNewTask(BuildContext context) {
@@ -49,7 +49,7 @@ class _TaskState extends State<Task> {
                       // ),
                     ),
                   ),
-                  controller: _todoTask,
+                  controller: todoTask,
                 ),
                 TextField(
                   decoration: InputDecoration(label: Text("Task Details")),
@@ -62,10 +62,10 @@ class _TaskState extends State<Task> {
             MaterialButton(
               onPressed: () {
                 setState(() {
-                  todoList.add(_todoTask.text);
+                  todoList.add(todoTask.text);
                 });
                 Navigator.pop(context);
-                _todoTask.clear();
+                todoTask.clear();
               },
               child: Text("Ok"),
             ),
