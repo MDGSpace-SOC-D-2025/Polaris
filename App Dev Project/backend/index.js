@@ -1,6 +1,7 @@
 const app = require('./app')
 const mongodb = require('./config/mongodb')
 const toDoModel = require('./model/todo.model')
+const userModel = require('./model/user.model')
 const toDoRouter = require('./routers/todo.router')
 const toDoController = require('./controller/todo.controller')
 
@@ -12,6 +13,6 @@ app.listen(port,()=>{
 
 app.use('/todo',toDoRouter)
 
-toDoModel.create({
-  taskName: 'do homework'
-})
+// toDoModel.create({
+//   taskName: 'do homework'
+// })

@@ -2,10 +2,6 @@ const mongodb = require('../config/mongodb')
 const mongoose = require('mongoose')
 
 const toDoSchema = new mongoose.Schema({
-    // id:{
-    //     type: Number,
-    //     required: true
-    // },
     taskName: {
         type: String,
         required: true
