@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:polaris/pages/login.dart';
+import 'package:polaris/pages/signup.dart';
 import 'package:polaris/pages/task_home.dart';
 
 void main() {
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "AverialLibre",
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF141C2F)),
       ),
-      home: Task(),
+      home: Login(),
     );
   }
 }
