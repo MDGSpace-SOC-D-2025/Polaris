@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const connection = mongoose.connect('mongodb://127.0.0.1:27017/database').then(()=>{
+const connection = mongoose.connect(process.env.MONG0_URL).then(()=>{
     console.log('connected to database')
 })
 

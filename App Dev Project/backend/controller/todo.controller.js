@@ -1,5 +1,10 @@
 const toDoModel = require("../model/todo.model")
 
+const getToDo = async (req, res) => {
+  const todo = await toDoModel.find()
+  res.json(todo)
+};
+
 const addToDo = async (req, res) => {
   await toDoModel.create(req.body)
   res.json({ message: "Todo added" })
@@ -11,6 +16,7 @@ const deleteToDo = async (req, res) => {
 };
 
 module.exports = {
+  getToDo,
   addToDo,
   deleteToDo
 }
