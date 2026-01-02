@@ -1,5 +1,6 @@
 const dotenv = require('dotenv')
 dotenv.config()
+const express = require('express')
 const app = require('./app')
 const mongodb = require('./config/mongodb')
 const toDoModel = require('./model/todo.model')
@@ -10,6 +11,8 @@ const userRouter = require('./routers/user.router')
 const userController = require('./controller/user.controller')
 
 const port = 3000
+
+app.use(express.json())
 
 app.listen(port,()=>{
     console.log('server listening on port')

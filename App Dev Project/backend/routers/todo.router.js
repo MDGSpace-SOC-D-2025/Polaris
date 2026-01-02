@@ -6,4 +6,4 @@ router.get('/', controller.getToDo)
 router.post('/', controller.addToDo)
 router.delete("/:id", controller.deleteToDo)
 
-module.exports = router 
+module.exports = router
