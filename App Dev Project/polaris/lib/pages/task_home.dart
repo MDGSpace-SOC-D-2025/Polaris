@@ -51,9 +51,9 @@ class _TaskState extends State<Task> {
                   ),
                   controller: todoTask,
                 ),
-                TextField(
-                  decoration: InputDecoration(label: Text("Task Details")),
-                ),
+                // TextField(
+                //   decoration: InputDecoration(label: Text("Task Details")),
+                // ),
               ],
             ),
           ),

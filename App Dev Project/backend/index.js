@@ -3,9 +3,11 @@ dotenv.config()
 const app = require('./app')
 const mongodb = require('./config/mongodb')
 const toDoModel = require('./model/todo.model')
-const userModel = require('./model/user.model')
 const toDoRouter = require('./routers/todo.router')
 const toDoController = require('./controller/todo.controller')
+const userModel = require('./model/user.model')
+const userRouter = require('./routers/user.router')
+const userController = require('./controller/user.controller')
 
 const port = 3000
 
@@ -14,6 +16,7 @@ app.listen(port,()=>{
 })
 
 app.use('/todo',toDoRouter)
+app.use('/user',userRouter)
 
 toDoModel.create({
   taskName: 'do homework'
