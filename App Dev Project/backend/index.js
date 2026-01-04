@@ -12,6 +12,8 @@ const userController = require('./controller/user.controller')
 
 const port = 3000
 
+// middleware
+app.use(express.json())
 app.use(express.json())
 
 app.listen(port,()=>{
@@ -24,7 +26,6 @@ app.use('/user',userRouter)
 toDoModel.create({
   taskName: 'do homework'
 })
-
 
 // const app = require('./app')
 // const mongodb = require('./config/mongodb')
