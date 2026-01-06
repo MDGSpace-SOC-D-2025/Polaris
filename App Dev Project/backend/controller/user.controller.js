@@ -7,7 +7,7 @@ const getUser = async (req, res) => {
   res.json(user)
 };
 
-const addUser = async (req, res) => {
+const registerUser = async (req, res) => {
   const {email, userId, password} = req.body;
   const hashPassword = await bcrypt.hash(password, 10);
   await userModel.create({email, userId, password: hashPassword})
@@ -16,13 +16,14 @@ const addUser = async (req, res) => {
     },
   process.env.JWT_SECRET
   )
-  res.cookie('token',token)
+ 
   res.json({ 
+    token: token,
     message: "User added",
   })
 };
 
 module.exports = {
   getUser,
-  addUser
+  registerUser
 }

@@ -17,9 +17,8 @@ class _LoginState extends State<Login> {
         children: [
           Text("Login Page"),
 
-          InputBox(inputText: "Email"),
-          InputBox(inputText: "Password"),
-
+          //InputBox(inputText: "Email"),
+          //InputBox(inputText: "Password"),
           SizedBox(height: 25),
 
           Text("Not a member? SignUp"),

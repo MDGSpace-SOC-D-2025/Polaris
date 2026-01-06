@@ -2,23 +2,22 @@ import 'package:flutter/material.dart';
 
 class InputBox extends StatefulWidget {
   final String inputText;
+  final TextEditingController input;
 
-  const InputBox({super.key, required this.inputText});
+  const InputBox({super.key, required this.inputText, required this.input});
 
   @override
-  State<InputBox> createState() => _InputBoxState();
+  State<InputBox> createState() => InputBoxState();
 }
 
-class _InputBoxState extends State<InputBox> {
-  final input = TextEditingController();
-
+class InputBoxState extends State<InputBox> {
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 25, right: 25, top: 25),
       child: TextField(
+        controller: widget.input,
         decoration: InputDecoration(label: Text(widget.inputText)),
-        controller: input,
       ),
     );
   }

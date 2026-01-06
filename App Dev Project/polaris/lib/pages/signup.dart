@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:polaris/integration/user_integration.dart';
 import 'package:polaris/pages/input_box.dart';
+import 'package:polaris/pages/task_home.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -9,6 +11,25 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  UserService User_Service = UserService();
+
+  final emailInput = TextEditingController();
+  final userIdInput = TextEditingController();
+  final passwordInput = TextEditingController();
+
+  void registerUserOnClick() async {
+    await User_Service.registerUserList(
+      email: emailInput.text,
+      userId: userIdInput.text,
+      password: passwordInput.text,
+    );
+    if (!mounted) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => Task()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,12 +38,22 @@ class _SignUpState extends State<SignUp> {
         children: [
           Text("SignUp Page"),
 
-          InputBox(inputText: "Email"),
-          InputBox(inputText: "User Id"),
-          InputBox(inputText: "Password"),
-          InputBox(inputText: "Confirm Password"),
+          InputBox(inputText: "Email", input: emailInput),
+          InputBox(inputText: "User Id", input: userIdInput),
+          InputBox(inputText: "Password", input: passwordInput),
 
+          //InputBox(inputText: "Confirm Password"),
           SizedBox(height: 25),
+
+          FilledButton(
+            style: FilledButton.styleFrom(
+              backgroundColor: Colors.teal, // Set the background color here
+              foregroundColor:
+                  Colors.white, // Set the text color here for visibility
+            ),
+            onPressed: registerUserOnClick,
+            child: const Text('Submit'),
+          ),
 
           Text("Already a member? Login"),
         ],
