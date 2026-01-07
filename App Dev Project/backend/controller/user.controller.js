@@ -8,8 +8,8 @@ const getUser = async (req, res) => {
 };
 
 const registerUser = async (req, res) => {
-  const {email, userId, password} = req.body;
-  const hashPassword = await bcrypt.hash(password, 10);
+  const {email, userId, password} = req.body
+  const hashPassword = await bcrypt.hash(password, 10)
   await userModel.create({email, userId, password: hashPassword})
   const token = jwt.sign({
       userId: req.body.userId
@@ -19,11 +19,30 @@ const registerUser = async (req, res) => {
  
   res.json({ 
     token: token,
-    message: "User added",
+    message: "User registered",
   })
+};
+
+const loginUser = async (req, res) => {
+  const {email, password} = req.body
+  const user = await userModel.findOne({email})
+  if (!user){
+    return res.status(400).json({message: "User not found"});
+  }
+    
+  const match = await bcrypt.compare(password, user.password)
+  if (!match){
+    return res.status(400).json({message: "Incoorect user credentials"})
+  }
+  
+  res.json({ 
+    message: "User logged in",
+  })
+    
 };
 
 module.exports = {
   getUser,
-  registerUser
+  registerUser,
+  loginUser
 }

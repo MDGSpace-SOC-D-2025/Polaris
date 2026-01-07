@@ -1,6 +1,7 @@
 const dotenv = require('dotenv')
 dotenv.config()
 const express = require('express')
+const cors = require('cors')
 const app = require('./app')
 const mongodb = require('./config/mongodb')
 const toDoModel = require('./model/todo.model')
@@ -13,7 +14,7 @@ const userController = require('./controller/user.controller')
 const port = 3000
 
 // middleware
-app.use(express.json())
+app.use(cors()) 
 app.use(express.json())
 
 app.listen(port,()=>{
@@ -23,9 +24,9 @@ app.listen(port,()=>{
 app.use('/todo',toDoRouter)
 app.use('/user',userRouter)
 
-toDoModel.create({
-  taskName: 'do homework'
-})
+// toDoModel.create({
+//   taskName: 'do homework'
+// })
 
 // const app = require('./app')
 // const mongodb = require('./config/mongodb')
