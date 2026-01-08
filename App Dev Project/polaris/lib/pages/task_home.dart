@@ -78,6 +78,7 @@ class _TaskState extends State<Task> {
               onPressed: () async {
                 await todoService.addToDo(taskName: todoTask.text);
                 todoTask.clear();
+                // ignore: use_build_context_synchronously
                 Navigator.pop(context);
                 getTask();
               },

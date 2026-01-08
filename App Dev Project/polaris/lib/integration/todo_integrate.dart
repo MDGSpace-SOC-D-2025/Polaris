@@ -2,13 +2,17 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ToDoService {
-  String baseUrl = "http://10.90.222.252:3000/todo";
+  String baseUrl = "http://localhost:3000/todo";
 
   Future<List> getToDo() async {
-    var response = await http.get(Uri.parse(baseUrl));
+    try {
+      var response = await http.get(Uri.parse(baseUrl));
 
-    if (response.statusCode == 200) {
-      jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        jsonDecode(response.body);
+      }
+    } on Exception catch (e) {
+      print(e);
     }
 
     return [];
