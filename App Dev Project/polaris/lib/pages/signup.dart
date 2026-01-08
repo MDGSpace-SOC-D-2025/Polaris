@@ -47,9 +47,8 @@ class _SignUpState extends State<SignUp> {
 
           FilledButton(
             style: FilledButton.styleFrom(
-              backgroundColor: Colors.teal, // Set the background color here
-              foregroundColor:
-                  Colors.white, // Set the text color here for visibility
+              backgroundColor: Colors.teal,
+              foregroundColor: Colors.white,
             ),
             onPressed: registerUserOnClick,
             child: const Text('Submit'),
