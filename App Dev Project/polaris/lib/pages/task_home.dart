@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polaris/integration/todo_integrate.dart';
 import 'package:polaris/pages/todo.dart';
 
 class Task extends StatefulWidget {
@@ -9,10 +10,24 @@ class Task extends StatefulWidget {
 }
 
 class _TaskState extends State<Task> {
+  final ToDoService todoService = ToDoService();
   //to do list LIST
-  List todoList = ["task1", "task2"];
+  List todoList = [];
 
   final todoTask = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    getTask();
+  }
+
+  void getTask() async {
+    var task = await todoService.getToDo();
+    setState(() {
+      todoList = task;
+    });
+  }
 
   //addNewTask dialog box
   void addNewTask(BuildContext context) {
@@ -60,12 +75,11 @@ class _TaskState extends State<Task> {
 
           actions: [
             MaterialButton(
-              onPressed: () {
-                setState(() {
-                  todoList.add(todoTask.text);
-                });
-                Navigator.pop(context);
+              onPressed: () async {
+                await todoService.addToDo(taskName: todoTask.text);
                 todoTask.clear();
+                Navigator.pop(context);
+                getTask();
               },
               child: Text("Ok"),
             ),

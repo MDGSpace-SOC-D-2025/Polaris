@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class UserService {
-  String baseUrl = "http://10.0.2.2:3000/user/register";
+  String baseUrl = "http://10.90.222.252:3000/user/register";
   Future<void> registerUserList({
     required String email,
     required String userId,

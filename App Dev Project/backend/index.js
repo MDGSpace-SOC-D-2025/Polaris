@@ -1,8 +1,8 @@
 const dotenv = require('dotenv')
 dotenv.config()
 const express = require('express')
+const app = express()
 const cors = require('cors')
-const app = require('./app')
 const mongodb = require('./config/mongodb')
 const toDoModel = require('./model/todo.model')
 const toDoRouter = require('./routers/todo.router')
@@ -17,12 +17,16 @@ const port = 3000
 app.use(cors()) 
 app.use(express.json())
 
+// routers
+app.use('/todo',toDoRouter)
+app.use('/user',userRouter)
+app.get('/',(req,res)=>{
+    res.send("hello world")
+})
+
 app.listen(port,()=>{
     console.log('server listening on port')
 })
-
-app.use('/todo',toDoRouter)
-app.use('/user',userRouter)
 
 // toDoModel.create({
 //   taskName: 'do homework'
