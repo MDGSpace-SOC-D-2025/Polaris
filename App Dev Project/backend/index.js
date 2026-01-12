@@ -18,7 +18,7 @@ app.use(cors())
 app.use(express.json())
 
 // routers
-app.use('/todo',toDoRouter)
+app.use('/todo', toDoRouter)
 app.use('/user',userRouter)
 app.get('/',(req,res)=>{
     res.send("hello world")

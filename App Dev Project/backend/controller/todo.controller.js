@@ -1,19 +1,19 @@
 const toDoModel = require("../model/todo.model")
 
 const getToDo = async (req, res) => {
-  const todo = await toDoModel.find()
-  //const todo = await toDoModel.find({userId})
+  //const todo = await toDoModel.find()
+  const todo = await toDoModel.find({user_id: req.userId})
   res.json(todo)
 };
 
 const addToDo = async (req, res) => {
-  await toDoModel.create(req.body)
-  res.json({ message: "Todo added" })
+  await toDoModel.create(req.body, {user_id: req.userId}) ////
+  res.json({message: "Todo added"})
 };
 
 const deleteToDo = async (req, res) => {
-  await toDoModel.findByIdAndDelete(req.params.id)
-  res.json({ message: "Todo deleted" })
+  await toDoModel.findByIdAndDelete({_id: req.params.id,user_id: req.userId})
+  res.json({message: "Todo deleted"})
 };
 
 module.exports = {

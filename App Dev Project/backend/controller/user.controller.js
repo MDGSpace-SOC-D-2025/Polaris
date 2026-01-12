@@ -35,7 +35,14 @@ const loginUser = async (req, res) => {
     return res.status(400).json({message: "Incorrect user credentials"})
   }
   
+  const token = jwt.sign({
+      userId: req.body.userId
+    },
+  process.env.JWT_SECRET
+  )
+  
   res.json({ 
+    token: "token",
     message: "User logged in",
   })
     
