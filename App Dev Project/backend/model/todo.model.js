@@ -1,5 +1,6 @@
 const mongodb = require('../config/mongodb')
 const mongoose = require('mongoose')
+//const user = require('./user.model')
 
 const toDoSchema = new mongoose.Schema({
     taskName: {
@@ -9,7 +10,12 @@ const toDoSchema = new mongoose.Schema({
     taskDone: {
         type: Boolean,
         default: false
-    }
+    },
+    // userId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'user'
+    // }
+   
 });
 
 const toDoModel = mongoose.model('todo', toDoSchema)

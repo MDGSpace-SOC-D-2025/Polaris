@@ -12,7 +12,7 @@ class Task extends StatefulWidget {
 class _TaskState extends State<Task> {
   final ToDoService todoService = ToDoService();
   //to do list LIST
-  List todoList = [];
+  List<dynamic> todoList = [];
 
   final todoTask = TextEditingController();
 
@@ -23,9 +23,12 @@ class _TaskState extends State<Task> {
   }
 
   void getTask() async {
+    print('getting tasks');
     var task = await todoService.getToDo();
     setState(() {
+      print('Updated todoList length: ${todoList.length}');
       todoList = task;
+      print('Updated todoList length: ${todoList.length}');
     });
   }
 
@@ -170,7 +173,16 @@ class _TaskState extends State<Task> {
             child: ListView.builder(
               itemCount: todoList.length,
               itemBuilder: (context, index) {
-                return ToDoList(taskName: todoList[index]);
+                final currentTask = todoList[index];
+
+                return ToDoList(
+                  taskName: currentTask['taskName'],
+                  onDelete: () async {
+                    await todoService.deleteToDo(id: currentTask['_id']);
+                    print(todoList[index]);
+                    getTask();
+                  },
+                );
               },
             ),
           ),

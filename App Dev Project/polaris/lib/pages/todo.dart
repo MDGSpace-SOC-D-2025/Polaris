@@ -4,8 +4,14 @@ import 'package:flutter/material.dart';
 class ToDoList extends StatefulWidget {
   final String taskName;
   bool taskDone;
+  VoidCallback onDelete;
 
-  ToDoList({super.key, required this.taskName, this.taskDone = false});
+  ToDoList({
+    super.key,
+    required this.taskName,
+    this.taskDone = false,
+    required this.onDelete,
+  });
 
   @override
   State<ToDoList> createState() => ToDoListState();
@@ -52,6 +58,8 @@ class ToDoListState extends State<ToDoList> {
               decorationStyle: TextDecorationStyle.solid,
             ),
           ),
+
+          IconButton(onPressed: (widget.onDelete), icon: Icon(Icons.delete)),
         ],
       ),
     );

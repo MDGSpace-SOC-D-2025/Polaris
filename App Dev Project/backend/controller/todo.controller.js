@@ -2,6 +2,7 @@ const toDoModel = require("../model/todo.model")
 
 const getToDo = async (req, res) => {
   const todo = await toDoModel.find()
+  //const todo = await toDoModel.find({userId})
   res.json(todo)
 };
 

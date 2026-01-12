@@ -12,7 +12,6 @@ const userRouter = require('./routers/user.router')
 const userController = require('./controller/user.controller')
 
 const port = 3000
-const host = '0.0.0.0';
 
 // middleware
 app.use(cors()) 
@@ -25,7 +24,7 @@ app.get('/',(req,res)=>{
     res.send("hello world")
 })
 
-app.listen(port,host,()=>{
+app.listen(port,()=>{
     console.log('server listening on port')
 })
 
