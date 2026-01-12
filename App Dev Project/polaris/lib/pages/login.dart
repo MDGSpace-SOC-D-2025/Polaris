@@ -17,15 +17,20 @@ class _LoginState extends State<Login> {
   final passwordInput = TextEditingController();
 
   void loginUserOnClick() async {
-    await Login_Service.loginUserList(
+    bool loginSuccessful = await Login_Service.loginUserList(
       email: emailInput.text,
       password: passwordInput.text,
     );
-    if (!mounted) return;
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => Task()),
-    );
+
+    if (loginSuccessful == true) {
+      if (!mounted) return;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Task()),
+      );
+    } else {
+      print('login unsuccessful');
+    }
   }
 
   @override

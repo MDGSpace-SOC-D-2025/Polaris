@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class LoginService {
   String baseUrl = "http://localhost:3000/user/login";
-  Future<void> loginUserList({
+  Future<bool> loginUserList({
     required String email,
     required String password,
   }) async {
@@ -16,11 +16,14 @@ class LoginService {
 
       if (response.statusCode == 200) {
         jsonDecode(response.body);
+        return true;
       } else {
         print("unsuccessful ${response.statusCode}");
       }
     } on Exception catch (e) {
       print(e);
     }
+
+    return false;
   }
 }
