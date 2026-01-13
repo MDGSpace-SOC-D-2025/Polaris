@@ -7,7 +7,8 @@ const getToDo = async (req, res) => {
 };
 
 const addToDo = async (req, res) => {
-  await toDoModel.create(req.body, {user_id: req.userId}) ////
+  await toDoModel.create({taskName: req.body.taskName,
+    taskDone: req.body.taskDone,  user_id: req.userId}) ////
   res.json({message: "Todo added"})
 };
 

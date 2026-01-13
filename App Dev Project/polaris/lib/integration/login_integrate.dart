@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginService {
   String baseUrl = "http://localhost:3000/user/login";
@@ -15,7 +16,13 @@ class LoginService {
       );
 
       if (response.statusCode == 200) {
-        jsonDecode(response.body);
+        final user = jsonDecode(response.body);
+        String token = user["token"];
+        print("Token from login_integrate.dart: $token");
+
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('jwt_token', token);
+
         return true;
       } else {
         print("unsuccessful ${response.statusCode}");

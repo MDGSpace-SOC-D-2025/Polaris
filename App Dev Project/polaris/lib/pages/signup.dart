@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:polaris/integration/user_integration.dart';
 import 'package:polaris/pages/input_box.dart';
+import 'package:polaris/pages/login.dart';
 import 'package:polaris/pages/task_home.dart';
 
 class SignUp extends StatefulWidget {
@@ -54,7 +55,15 @@ class _SignUpState extends State<SignUp> {
             child: const Text('Submit'),
           ),
 
-          Text("Already a member? Login"),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => Login()),
+              );
+            },
+            child: Text("Already a member? Login"),
+          ),
         ],
       ),
     );

@@ -7,7 +7,7 @@ function authorize(req, res, next) {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
         req.userId = decoded.userId; ////
         next()
-    }catch (e){
+    } catch (e){
         res.status(401).send({error: "token not found"})
     }
 }
