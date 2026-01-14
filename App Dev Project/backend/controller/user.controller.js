@@ -1,4 +1,5 @@
 const userModel = require("../model/user.model")
+const toDoModel = require("../model/todo.model")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -37,7 +38,7 @@ const loginUser = async (req, res) => {
     }
     
     const token = jwt.sign({
-        userId: user._id
+        userId: user._id ////
       },
     process.env.JWT_SECRET
     )
@@ -52,8 +53,32 @@ const loginUser = async (req, res) => {
     
 };
 
+const onCompleteTodo = async (req, res) => {
+  try {
+    const task = await toDoModel.findById({_id: req.params.id})
+    
+    if (!task){
+      return res.status(400).json({message: "to do not found"})
+    }
+    
+    task.taskDone = true;
+    
+    await userModel.findByIdAndUpdate({
+      rewardTime: req.rewardTime += 10
+    })
+    
+    res.status(200).json({ 
+      message: "reward time incremented successfully",
+    })
+  } catch (error) {
+    console.error(error)
+  }
+  
+};
+
 module.exports = {
   getUser,
   registerUser,
-  loginUser
+  loginUser,
+  onCompleteTodo
 }

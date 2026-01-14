@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polaris/integration/rewardTime_integrate.dart';
 import 'package:polaris/integration/todo_integrate.dart';
 import 'package:polaris/pages/todo.dart';
 
@@ -11,6 +12,8 @@ class Task extends StatefulWidget {
 
 class _TaskState extends State<Task> {
   final ToDoService todoService = ToDoService();
+  final RewardTimeService rewardtimeService = RewardTimeService();
+
   //to do list LIST
   List<dynamic> todoList = [];
 
@@ -155,7 +158,7 @@ class _TaskState extends State<Task> {
                   ),
                   child: Center(
                     child: Text(
-                      "RewardTime",
+                      "RewardTime", //"$rewardtimeService.getRewardTimeUser()"
                       style: TextStyle(
                         fontFamily: "AverialLibre",
                         fontSize: 20,

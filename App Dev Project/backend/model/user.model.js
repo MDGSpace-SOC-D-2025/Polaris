@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    rewardTime: {
+        type: Number,
+        default: 0
     }
 });
 

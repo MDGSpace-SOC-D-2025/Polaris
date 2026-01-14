@@ -1,12 +1,12 @@
-const mongodb = require('../config/mongodb')
-const mongoose = require('mongoose')
+// const mongodb = require('../config/mongodb')
+// const mongoose = require('mongoose')
 
-const userSchema = new mongoose.Schema({
-    rewardTime: {
-        type: Number
-    }
-});
+// const userSchema = new mongoose.Schema({
+//     rewardTime: {
+//         type: Number
+//     }
+// });
 
-const rewardTimeModel = mongoose.model('rewardtime', userSchema)
+// const rewardTimeModel = mongoose.model('rewardtime', userSchema)
 
-module.exports = rewardTimeModel
+// module.exports = rewardTimeModel
