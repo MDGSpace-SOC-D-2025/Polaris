@@ -1,9 +1,10 @@
-import 'package:block_app/block_app.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:usage_stats/usage_stats.dart';
+import 'package:block_app/block_app.dart';
 
 final blockApp = BlockApp();
 
-// Or with custom configuration
 Future<void> initializeBlockApp() async {
   await blockApp.initialize(
     config: const AppBlockConfig(
@@ -14,4 +15,20 @@ Future<void> initializeBlockApp() async {
       autoStartService: true,
     ),
   );
+}
+
+Future<void> takingPermission() async {
+  await UsageStats.grantUsagePermission();
+  await Permission.systemAlertWindow.request();
+  if (await Permission.systemAlertWindow.isDenied) {
+    await openAppSettings();
+  }
+}
+
+Future<void> onOpeningInstagram() async {
+  if (await Permission.systemAlertWindow.isGranted) {
+    await blockApp.blockApp('com.instagram.android');
+  } else {
+    await openAppSettings();
+  }
 }

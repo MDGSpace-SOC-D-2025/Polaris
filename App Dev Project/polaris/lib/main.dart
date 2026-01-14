@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "AverialLibre",
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF141C2F)),
       ),
-      home: SignUp(),
+      home: Task(),
     );
   }
 }
