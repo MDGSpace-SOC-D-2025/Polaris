@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginService {
-  String baseUrl = "http://localhost:3000/user/login";
+  String baseUrl = "http://10.81.68.170:3000/user/login";
   Future<bool> loginUserList({
     required String email,
     required String password,

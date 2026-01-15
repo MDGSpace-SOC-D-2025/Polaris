@@ -5,9 +5,9 @@ import 'package:polaris/pages/signup.dart';
 import 'package:polaris/pages/task_home.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await takingPermission();
-  // await initializeBlockApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  await takingPermission();
+  await initializeBlockApp();
 
   runApp(const MyApp());
 }

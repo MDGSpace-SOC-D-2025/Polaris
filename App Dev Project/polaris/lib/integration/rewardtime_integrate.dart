@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class RewardTimeService {
-  String baseUrl = "http://localhost:3000/user/rewardtime";
+  String baseUrl = "http://10.81.68.170:3000/user/rewardtime";
 
   Future<int> getRewardTimeUser() async {
     try {

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:polaris/integration/rewardtime_integrate.dart';
 import 'package:usage_stats/usage_stats.dart';
 import 'package:block_app/block_app.dart';
 
+final RewardTimeService rewardtimeService = RewardTimeService();
 final blockApp = BlockApp();
 
 Future<void> initializeBlockApp() async {
@@ -26,9 +28,11 @@ Future<void> takingPermission() async {
 }
 
 Future<void> onOpeningInstagram() async {
-  if (await Permission.systemAlertWindow.isGranted) {
-    await blockApp.blockApp('com.instagram.android');
-  } else {
-    await openAppSettings();
+  if (rewardtimeService.getRewardTimeUser() == 0) {
+    if (await Permission.systemAlertWindow.isGranted) {
+      await blockApp.blockApp('com.instagram.android');
+    } else {
+      await openAppSettings();
+    }
   }
 }
