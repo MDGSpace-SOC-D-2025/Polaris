@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 class ToDoList extends StatefulWidget {
   final String taskName;
   bool taskDone;
+  VoidCallback onDone;
   VoidCallback onDelete;
 
   ToDoList({
     super.key,
     required this.taskName,
     this.taskDone = false,
+    required this.onDone,
     required this.onDelete,
   });
 
@@ -39,6 +41,7 @@ class ToDoListState extends State<ToDoList> {
             onChanged: (bool? newValue) {
               setState(() {
                 widget.taskDone = newValue!;
+                widget.onDone;
               });
             },
           ),

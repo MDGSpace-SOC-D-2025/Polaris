@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:polaris/instagram/blocking.dart';
 import 'package:polaris/pages/login.dart';
 import 'package:polaris/pages/signup.dart';
 import 'package:polaris/pages/task_home.dart';
 
-void main() {
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await takingPermission();
+  // await initializeBlockApp();
+
   runApp(const MyApp());
 }
 
