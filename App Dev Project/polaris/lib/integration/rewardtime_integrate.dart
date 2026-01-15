@@ -13,7 +13,25 @@ class RewardTimeService {
 
       if (response.statusCode == 200) {
         final user = jsonDecode(response.body);
-        return user["rewardTime"];
+        return user["rewardTime"] as int;
+      }
+    } on Exception catch (e) {
+      print(e);
+    }
+    return -1;
+  }
+
+  Future<int> setRewardTimeUser(int newRewardTime) async {
+    try {
+      var response = await http.patch(
+        Uri.parse(baseUrl),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({"rewardTime": newRewardTime}),
+      );
+
+      if (response.statusCode == 200) {
+        final user = jsonDecode(response.body);
+        return user["rewardTime"] as int;
       }
     } on Exception catch (e) {
       print(e);
@@ -30,7 +48,7 @@ class RewardTimeService {
 
       if (response.statusCode == 200) {
         final user = jsonDecode(response.body);
-        return user["rewardTime"] + 10;
+        return (user["rewardTime"] + 10) as int;
       }
     } on Exception catch (e) {
       print(e);

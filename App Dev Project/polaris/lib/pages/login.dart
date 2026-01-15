@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polaris/instagram/blocking.dart';
 import 'package:polaris/integration/login_integrate.dart';
 import 'package:polaris/pages/input_box.dart';
 import 'package:polaris/pages/signup.dart';
@@ -17,6 +18,8 @@ class _LoginState extends State<Login> {
   final emailInput = TextEditingController();
   final passwordInput = TextEditingController();
 
+  bool openFirst = true;
+
   void loginUserOnClick() async {
     bool loginSuccessful = await Login_Service.loginUserList(
       email: emailInput.text,
@@ -25,6 +28,10 @@ class _LoginState extends State<Login> {
 
     if (loginSuccessful == true) {
       if (!mounted) return;
+      if (openFirst == true) {
+        takingPermission();
+        openFirst == false;
+      }
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Task()),

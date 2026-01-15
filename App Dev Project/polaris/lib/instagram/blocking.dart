@@ -21,6 +21,9 @@ Future<void> initializeBlockApp() async {
 
 Future<void> takingPermission() async {
   await UsageStats.grantUsagePermission();
+  if (await UsageStats.checkUsagePermission() == false) {
+    await openAppSettings();
+  }
   await Permission.systemAlertWindow.request();
   if (await Permission.systemAlertWindow.isDenied) {
     await openAppSettings();
@@ -28,11 +31,42 @@ Future<void> takingPermission() async {
 }
 
 Future<void> onOpeningInstagram() async {
-  if (rewardtimeService.getRewardTimeUser() == 0) {
-    if (await Permission.systemAlertWindow.isGranted) {
-      await blockApp.blockApp('com.instagram.android');
+  try {
+    if (rewardtimeService.getRewardTimeUser() == 0) {
+      if (await Permission.systemAlertWindow.isGranted) {
+        await blockApp.blockApp('com.instagram.android');
+      } else {
+        await openAppSettings();
+      }
     } else {
-      await openAppSettings();
+      DateTime endDate = new DateTime.now();
+      DateTime startDate = DateTime(
+        endDate.year,
+        endDate.month,
+        endDate.day,
+        0,
+        0,
+        0,
+      );
+
+      int durationInMilisec = 0;
+      List<UsageInfo> usageStats = await UsageStats.queryUsageStats(
+        startDate,
+        endDate,
+      );
+      for (var i in usageStats) {
+        if (i.packageName == 'com.instagram.android') {
+          durationInMilisec = i.totalTimeInForeground as int;
+        }
+      }
+
+      int durationInMin = durationInMilisec ~/ 60000;
+      int currentRewardTime = await rewardtimeService.getRewardTimeUser();
+      await rewardtimeService.setRewardTimeUser(
+        currentRewardTime - durationInMin,
+      );
     }
+  } on Exception catch (e) {
+    print(e);
   }
 }
