@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 function authorize(req, res, next) {
-    const token = req.get('Authorization')
+    const authHeader = req.get('Authorization')
 
     try{
         const decoded = jwt.verify(token, process.env.JWT_SECRET)

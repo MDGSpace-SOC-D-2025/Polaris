@@ -19,7 +19,7 @@ class _TaskState extends State<Task> {
 
   final todoTask = TextEditingController();
 
-  var displayRewardtime;
+  var displayRewardtime = 0;
 
   @override
   void initState() {
@@ -39,7 +39,10 @@ class _TaskState extends State<Task> {
   }
 
   void loadDisplayRewardTime() async {
-    displayRewardtime = await rewardtimeService.getRewardTimeUser();
+    final val = await rewardtimeService.getRewardTimeUser();
+    setState(() {
+      displayRewardtime = val;
+    });
   }
 
   //addNewTask dialog box
@@ -165,7 +168,7 @@ class _TaskState extends State<Task> {
                   ),
                   child: Center(
                     child: Text(
-                      "RewardTime", //"$rewardtimeService.getRewardTimeUser()"
+                      "$displayRewardtime", //"$rewardtimeService.getRewardTimeUser()",
                       style: TextStyle(
                         fontFamily: "AverialLibre",
                         fontSize: 20,
@@ -188,8 +191,11 @@ class _TaskState extends State<Task> {
                 return ToDoList(
                   taskName: currentTask['taskName'],
                   onDone: () async {
-                    displayRewardtime = await rewardtimeService
+                    final updatedTime = await rewardtimeService
                         .incrementRewardTimeUser();
+                    setState(() {
+                      displayRewardtime = updatedTime;
+                    });
                   },
                   onDelete: () async {
                     await todoService.deleteToDo(id: currentTask['_id']);

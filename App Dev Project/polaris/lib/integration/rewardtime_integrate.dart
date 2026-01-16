@@ -48,7 +48,8 @@ class RewardTimeService {
 
       if (response.statusCode == 200) {
         final user = jsonDecode(response.body);
-        return (user["rewardTime"] + 10) as int;
+        await setRewardTimeUser(user["rewardTime"] + 10);
+        return (user["rewardTime"]) as int;
       }
     } on Exception catch (e) {
       print(e);

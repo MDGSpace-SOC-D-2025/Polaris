@@ -4,7 +4,7 @@ import 'package:polaris/integration/rewardtime_integrate.dart';
 import 'package:usage_stats/usage_stats.dart';
 import 'package:block_app/block_app.dart';
 
-final RewardTimeService rewardtimeService = RewardTimeService();
+final RewardTimeService rewardtimeBlockingService = RewardTimeService();
 final blockApp = BlockApp();
 
 Future<void> initializeBlockApp() async {
@@ -32,7 +32,8 @@ Future<void> takingPermission() async {
 
 Future<void> onOpeningInstagram() async {
   try {
-    if (rewardtimeService.getRewardTimeUser() == 0) {
+    final rt = await rewardtimeBlockingService.getRewardTimeUser();
+    if (rt <= 0) {
       if (await Permission.systemAlertWindow.isGranted) {
         await blockApp.blockApp('com.instagram.android');
       } else {
@@ -56,15 +57,26 @@ Future<void> onOpeningInstagram() async {
       );
       for (var i in usageStats) {
         if (i.packageName == 'com.instagram.android') {
-          durationInMilisec = i.totalTimeInForeground as int;
+          durationInMilisec = int.parse(i.totalTimeInForeground ?? '0');
         }
       }
 
       int durationInMin = durationInMilisec ~/ 60000;
-      int currentRewardTime = await rewardtimeService.getRewardTimeUser();
-      await rewardtimeService.setRewardTimeUser(
-        currentRewardTime - durationInMin,
-      );
+      int currentRewardTime = await rewardtimeBlockingService
+          .getRewardTimeUser();
+      final rtUpdated = currentRewardTime - durationInMin;
+
+      if (rtUpdated <= 0) {
+        if (await Permission.systemAlertWindow.isGranted) {
+          await blockApp.blockApp('com.instagram.android');
+        } else {
+          await openAppSettings();
+        }
+      } else {
+        await rewardtimeBlockingService.setRewardTimeUser(
+          currentRewardTime - durationInMin,
+        );
+      }
     }
   } on Exception catch (e) {
     print(e);

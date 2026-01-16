@@ -63,17 +63,18 @@ const onCompleteTodo = async (req, res) => {
     
     task.taskDone = true;
     
-    await userModel.findByIdAndUpdate({
-      rewardTime: req.rewardTime += 10
-    })
-    
+    await userModel.findByIdAndUpdate(
+      req.userId,
+      {$inc: {rewardTime: 10}},
+      {new: true}
+    )
+  
     res.status(200).json({ 
       message: "reward time incremented successfully",
     })
   } catch (error) {
     console.error(error)
   }
-  
 };
 
 module.exports = {
