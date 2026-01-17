@@ -40,7 +40,7 @@ Future<void> onOpeningInstagram() async {
         await openAppSettings();
       }
     } else {
-      DateTime endDate = new DateTime.now();
+      DateTime endDate = DateTime.now();
       DateTime startDate = DateTime(
         endDate.year,
         endDate.month,

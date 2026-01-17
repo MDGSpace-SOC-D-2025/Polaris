@@ -12,14 +12,14 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  UserService User_Service = UserService();
+  UserService userService = UserService();
 
   final emailInput = TextEditingController();
   final userIdInput = TextEditingController();
   final passwordInput = TextEditingController();
 
   void registerUserOnClick() async {
-    await User_Service.registerUserList(
+    await userService.registerUserList(
       email: emailInput.text,
       userId: userIdInput.text,
       password: passwordInput.text,
@@ -54,6 +54,8 @@ class _SignUpState extends State<SignUp> {
             onPressed: registerUserOnClick,
             child: const Text('Submit'),
           ),
+
+          SizedBox(height: 25),
 
           GestureDetector(
             onTap: () {

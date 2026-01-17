@@ -11,9 +11,9 @@ const getUser = async (req, res) => {
 const registerUser = async (req, res) => {
   const {email, userId, password} = req.body
   const hashPassword = await bcrypt.hash(password, 10)
-  await userModel.create({email, userId, password: hashPassword})
+  const user = await userModel.create({email, userId, password: hashPassword})
   const token = jwt.sign({
-      userId: req.body.userId
+      userId: user._id ////
     },
   process.env.JWT_SECRET
   )
@@ -53,15 +53,50 @@ const loginUser = async (req, res) => {
     
 };
 
+const toGetRewardTime = async (req, res) => {
+  try {
+    const user = await userModel.findById(req.userId)
+    
+    if (!user) {
+      return res.status(404).json({ error: "User not found in toGetRewardTime" })
+    }
+    
+    const rewardtimeOfUser = user.rewardTime
+    res.status(200).json({rewardTime: rewardtimeOfUser})
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const toSetRewardTime = async (req, res) => {
+  try {
+    const {rewardTime} = req.body;
+    const user = await userModel.findByIdAndUpdate(
+      req.userId,
+      {rewardTime: rewardTime},
+      {new: true}
+    )
+    if (!user) {
+      return res.status(404).json({ error: "User not found in toSetRewardTime" })
+    }
+    
+    const rewardtimeOfUser = user.rewardTime
+    res.status(200).json({rewardTime: rewardtimeOfUser})
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 const onCompleteTodo = async (req, res) => {
   try {
-    const task = await toDoModel.findById({_id: req.params.id})
+    const task = await toDoModel.findById(req.params.id)
     
     if (!task){
       return res.status(400).json({message: "to do not found"})
     }
     
     task.taskDone = true;
+    await task.save();
     
     await userModel.findByIdAndUpdate(
       req.userId,
@@ -81,5 +116,7 @@ module.exports = {
   getUser,
   registerUser,
   loginUser,
-  onCompleteTodo
+  onCompleteTodo,
+  toGetRewardTime,
+  toSetRewardTime
 }

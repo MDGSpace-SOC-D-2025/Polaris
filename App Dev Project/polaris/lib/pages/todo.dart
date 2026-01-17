@@ -10,7 +10,7 @@ class ToDoList extends StatefulWidget {
   ToDoList({
     super.key,
     required this.taskName,
-    this.taskDone = false,
+    required this.taskDone,
     required this.onDone,
     required this.onDelete,
   });
@@ -38,11 +38,8 @@ class ToDoListState extends State<ToDoList> {
             value: widget.taskDone,
             side: BorderSide(color: Color(0xFFF6F2E5)),
             activeColor: Colors.amber,
-            onChanged: (bool? newValue) {
-              setState(() {
-                widget.taskDone = newValue!;
-                widget.onDone;
-              });
+            onChanged: (bool? value) {
+              widget.onDone();
             },
           ),
 

@@ -13,7 +13,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  LoginService Login_Service = LoginService();
+  LoginService loginService = LoginService();
 
   final emailInput = TextEditingController();
   final passwordInput = TextEditingController();
@@ -21,7 +21,7 @@ class _LoginState extends State<Login> {
   bool openFirst = true;
 
   void loginUserOnClick() async {
-    bool loginSuccessful = await Login_Service.loginUserList(
+    bool loginSuccessful = await loginService.loginUserList(
       email: emailInput.text,
       password: passwordInput.text,
     );
@@ -30,7 +30,7 @@ class _LoginState extends State<Login> {
       if (!mounted) return;
       if (openFirst == true) {
         takingPermission();
-        openFirst == false;
+        openFirst = false;
       }
       Navigator.pushReplacement(
         context,
@@ -61,6 +61,8 @@ class _LoginState extends State<Login> {
             onPressed: loginUserOnClick,
             child: const Text('Submit'),
           ),
+
+          SizedBox(height: 25),
 
           GestureDetector(
             onTap: () {

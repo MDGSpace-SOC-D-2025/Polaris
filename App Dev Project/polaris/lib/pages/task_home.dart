@@ -190,12 +190,13 @@ class _TaskState extends State<Task> {
 
                 return ToDoList(
                   taskName: currentTask['taskName'],
+                  taskDone: (currentTask['taskDone'] == true),
                   onDone: () async {
-                    final updatedTime = await rewardtimeService
-                        .incrementRewardTimeUser();
-                    setState(() {
-                      displayRewardtime = updatedTime;
-                    });
+                    await rewardtimeService.completeToDo(
+                      id: currentTask['_id'],
+                    );
+                    loadDisplayRewardTime();
+                    getTask();
                   },
                   onDelete: () async {
                     await todoService.deleteToDo(id: currentTask['_id']);
