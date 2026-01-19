@@ -27,11 +27,12 @@ class _LoginState extends State<Login> {
     );
 
     if (loginSuccessful == true) {
-      if (!mounted) return;
       if (openFirst == true) {
-        takingPermission();
+        await takingPermission();
         openFirst = false;
       }
+
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Task()),

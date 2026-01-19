@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_accessibility_service/flutter_accessibility_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:polaris/integration/rewardtime_integrate.dart';
 import 'package:usage_stats/usage_stats.dart';
@@ -24,20 +25,34 @@ Future<void> takingPermission() async {
   if (await UsageStats.checkUsagePermission() == false) {
     await openAppSettings();
   }
+
   await Permission.systemAlertWindow.request();
   if (await Permission.systemAlertWindow.isDenied) {
     await openAppSettings();
+  }
+
+  if (await Permission.ignoreBatteryOptimizations.isDenied) {
+    await Permission.ignoreBatteryOptimizations.request();
+  }
+
+  bool isEnabled =
+      await FlutterAccessibilityService.isAccessibilityPermissionEnabled(); ////
+  if (!isEnabled) {
+    await FlutterAccessibilityService.requestAccessibilityPermission();
   }
 }
 
 Future<void> onOpeningInstagram() async {
   try {
     final rt = await rewardtimeBlockingService.getRewardTimeUser();
+    print("got reward time");
     if (rt <= 0) {
       if (await Permission.systemAlertWindow.isGranted) {
         await blockApp.blockApp('com.instagram.android');
+        print("instagram is blocked");
       } else {
         await openAppSettings();
+        print("instagram is not block, setting is opened");
       }
     } else {
       DateTime endDate = DateTime.now();

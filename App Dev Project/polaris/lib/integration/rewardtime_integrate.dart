@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RewardTimeService {
-  String baseUrl = "http://10.61.42.228:3000/user/rewardtime";
+  String baseUrl = "http://10.81.66.249:3000/user/rewardtime";
 
   Future<Map<String, String>> getHeaderRt() async {
     final prefs = await SharedPreferences.getInstance();
