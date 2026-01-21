@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:polaris/integration/rewardTime_integrate.dart';
 import 'package:polaris/integration/todo_integrate.dart';
@@ -21,11 +22,17 @@ class _TaskState extends State<Task> {
 
   var displayRewardtime = 0;
 
+  Timer? refreshTimer;
+
   @override
   void initState() {
     super.initState();
     getTask();
     loadDisplayRewardTime();
+
+    refreshTimer = Timer.periodic(Duration(seconds: 10), (timer) {
+      loadDisplayRewardTime();
+    });
   }
 
   void getTask() async {
@@ -70,21 +77,9 @@ class _TaskState extends State<Task> {
             child: Column(
               children: [
                 TextField(
-                  decoration: InputDecoration(
-                    label: Text(
-                      "Task",
-                      // style: TextStyle(
-                      //   fontFamily: "AverialLibre",
-                      //   fontSize: 17,
-                      //   decorationColor: Color(0xFF141C2F),
-                      // ),
-                    ),
-                  ),
+                  decoration: InputDecoration(label: Text("Task")),
                   controller: todoTask,
                 ),
-                // TextField(
-                //   decoration: InputDecoration(label: Text("Task Details")),
-                // ),
               ],
             ),
           ),
@@ -131,83 +126,91 @@ class _TaskState extends State<Task> {
         ),
       ),
 
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Expanded(
-                child: Container(
-                  height: 40,
-                  margin: const EdgeInsets.only(right: 15, top: 15, left: 15),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color(0xFFC2A273),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Date",
-                      style: TextStyle(
-                        fontFamily: "AverialLibre",
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF292B3A),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await Future.wait(
+            [getTask(), loadDisplayRewardTime()] as Iterable<Future<dynamic>>,
+          );
+        },
+
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 40,
+                    margin: const EdgeInsets.only(right: 15, top: 15, left: 15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Color(0xFFC2A273),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Date",
+                        style: TextStyle(
+                          fontFamily: "AverialLibre",
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF292B3A),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
 
-              Expanded(
-                child: Container(
-                  height: 40,
-                  margin: const EdgeInsets.only(right: 15, top: 15),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color(0xFFC2A273),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "$displayRewardtime", //"$rewardtimeService.getRewardTimeUser()",
-                      style: TextStyle(
-                        fontFamily: "AverialLibre",
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF292B3A),
+                Expanded(
+                  child: Container(
+                    height: 40,
+                    margin: const EdgeInsets.only(right: 15, top: 15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Color(0xFFC2A273),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "$displayRewardtime",
+                        style: TextStyle(
+                          fontFamily: "AverialLibre",
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF292B3A),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-
-          Expanded(
-            child: ListView.builder(
-              itemCount: todoList.length,
-              itemBuilder: (context, index) {
-                final currentTask = todoList[index];
-
-                return ToDoList(
-                  taskName: currentTask['taskName'],
-                  taskDone: (currentTask['taskDone'] == true),
-                  onDone: () async {
-                    await rewardtimeService.completeToDo(
-                      id: currentTask['_id'],
-                    );
-                    loadDisplayRewardTime();
-                    getTask();
-                  },
-                  onDelete: () async {
-                    await todoService.deleteToDo(id: currentTask['_id']);
-                    print(todoList[index]);
-                    getTask();
-                  },
-                );
-              },
+              ],
             ),
-          ),
-        ],
+
+            Expanded(
+              child: ListView.builder(
+                itemCount: todoList.length,
+                itemBuilder: (context, index) {
+                  final currentTask = todoList[index];
+
+                  return ToDoList(
+                    taskName: currentTask['taskName'],
+                    taskDone: (currentTask['taskDone'] == true),
+                    onDone: () async {
+                      await rewardtimeService.completeToDo(
+                        id: currentTask['_id'],
+                      );
+                      loadDisplayRewardTime();
+                      getTask();
+                    },
+                    onDelete: () async {
+                      await todoService.deleteToDo(id: currentTask['_id']);
+                      print(todoList[index]);
+                      getTask();
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
 
       floatingActionButton: FloatingActionButton(
@@ -217,5 +220,11 @@ class _TaskState extends State<Task> {
         child: Icon(Icons.add, color: Color(0xFF292B3A)),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    refreshTimer?.cancel();
+    super.dispose();
   }
 }
