@@ -28,6 +28,7 @@ void overlayMain() {
 
 String? lastApp;
 Timer? debounceTimer;
+DateTime? instagramStartTime;
 
 void startMonitoring() {
   FlutterAccessibilityService.accessStream.listen((event) async {
@@ -36,7 +37,7 @@ void startMonitoring() {
     debounceTimer?.cancel();
 
     debounceTimer = Timer(Duration(milliseconds: 800), () async {
-      if (event.packageName != null && event.packageName!.isNotEmpty) {
+      if (event.packageName != null) {
         await handleAppChange(event.packageName!);
       }
     });
@@ -61,7 +62,7 @@ Future<void> handleAppChange(String packageName) async {
           .inMilliseconds;
       int durationMin = durationMs ~/ 60000;
 
-      print("Instagram session ENDED. Duration: $durationMin minutes");
+      print("Instagram session ended. Duration: $durationMin minutes");
 
       final rt = await rewardtimeBlockingService.getRewardTimeUser();
       int newRewardTime = rt - durationMin;

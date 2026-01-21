@@ -6,8 +6,6 @@ import 'package:usage_stats/usage_stats.dart';
 
 final RewardTimeService rewardtimeBlockingService = RewardTimeService();
 
-DateTime? instagramStartTime;
-
 Future<void> takingPermission() async {
   if (await UsageStats.checkUsagePermission() == false) {
     await openAppSettings();
@@ -37,32 +35,6 @@ Future<void> takingPermission() async {
   }
 }
 
-// Future<void> onOpeningInstagram() async {
-//   try {
-//     final rt = await rewardtimeBlockingService.getRewardTimeUser();
-//     print("Current reward time: $rt");
-
-//     if (rt <= 0) {
-//       // No time left - show overlay
-//       if (!await FlutterOverlayWindow.isActive()) {
-//         await FlutterOverlayWindow.showOverlay(
-//           height: WindowSize.matchParent,
-//           width: WindowSize.matchParent,
-//           enableDrag: false,
-//           overlayTitle: "Blocked",
-//           overlayContent: "Instagram Blocked",
-//           flag: OverlayFlag.defaultFlag,
-//           visibility: NotificationVisibility.visibilityPublic,
-//         );
-//       }
-//       return;
-//     }
-//     print("onOpeningInstagram function call end - in blocking.dart");
-//   } on Exception catch (e) {
-//     print("Error in onOpeningInstagram: $e");
-//   }
-// }
-
 Future<void> onOpeningInstagram() async {
   try {
     final rt = await rewardtimeBlockingService.getRewardTimeUser();
@@ -82,56 +54,6 @@ Future<void> onOpeningInstagram() async {
       return;
     }
   } on Exception catch (e) {
-    print("Error in onOpeningInstagram: $e");
+    print(e);
   }
 }
-//     } else {
-//       DateTime endDate = DateTime.now();
-//       DateTime startDate = DateTime(
-//         endDate.year,
-//         endDate.month,
-//         endDate.day,
-//         0,
-//         0,
-//         0,
-//       );
-
-//       int durationInMilisec = 0;
-//       List<UsageInfo> usageStats = await UsageStats.queryUsageStats(
-//         startDate,
-//         endDate,
-//       );
-//       for (var i in usageStats) {
-//         if (i.packageName == 'com.instagram.android') {
-//           durationInMilisec = int.parse(i.totalTimeInForeground ?? '0');
-//         }
-//       }
-
-//       int durationInMin = durationInMilisec ~/ 60000;
-//       int currentRewardTime = await rewardtimeBlockingService
-//           .getRewardTimeUser();
-//       final rtUpdated = currentRewardTime - durationInMin;
-
-//       if (rtUpdated <= 0) {
-//         await rewardtimeBlockingService.setRewardTimeUser(0);
-//         if (!await FlutterOverlayWindow.isActive()) {
-//           await FlutterOverlayWindow.showOverlay(
-//             height: WindowSize.matchParent,
-//             width: WindowSize.matchParent,
-//             enableDrag: false,
-//             overlayTitle: "Blocked",
-//             overlayContent: "Instagram Blocked",
-//             flag: OverlayFlag.defaultFlag,
-//             visibility: NotificationVisibility.visibilityPublic,
-//           );
-//         } else {
-//           print("instagram is not block, setting is opened");
-//         }
-//       } else {
-//         await rewardtimeBlockingService.setRewardTimeUser(rtUpdated);
-//       }
-//     }
-//   } on Exception catch (e) {
-//     print(e);
-//   }
-// }
