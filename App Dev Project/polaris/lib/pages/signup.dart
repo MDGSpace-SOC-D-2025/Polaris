@@ -12,12 +12,15 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  // services
   UserService userService = UserService();
 
+  // variables
   final emailInput = TextEditingController();
   final userIdInput = TextEditingController();
   final passwordInput = TextEditingController();
 
+  // functions - for registering the user on clicking submit button
   void registerUserOnClick() async {
     await userService.registerUserList(
       email: emailInput.text,
@@ -37,13 +40,12 @@ class _SignUpState extends State<SignUp> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("SignUp Page"),
+          Text('SignUp Page'),
 
-          InputBox(inputText: "Email", input: emailInput),
-          InputBox(inputText: "User Id", input: userIdInput),
-          InputBox(inputText: "Password", input: passwordInput),
+          InputBox(inputText: 'Email', input: emailInput),
+          InputBox(inputText: 'User Id', input: userIdInput),
+          InputBox(inputText: 'Password', input: passwordInput),
 
-          //InputBox(inputText: "Confirm Password"),
           SizedBox(height: 25),
 
           FilledButton(
@@ -64,7 +66,7 @@ class _SignUpState extends State<SignUp> {
                 MaterialPageRoute(builder: (context) => Login()),
               );
             },
-            child: Text("Already a member? Login"),
+            child: Text('Already a member? Login'),
           ),
         ],
       ),

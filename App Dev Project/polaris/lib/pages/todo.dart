@@ -27,7 +27,6 @@ class ToDoListState extends State<ToDoList> {
       height: 60,
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        //color: Colors.green,
         borderRadius: BorderRadius.circular(15),
         border: Border.all(color: Color(0xFF141C2F)),
       ),

@@ -8,7 +8,7 @@ final RewardTimeService rewardtimeBlockingService = RewardTimeService();
 
 Future<void> takingPermission() async {
   if (await UsageStats.checkUsagePermission() == false) {
-    await openAppSettings();
+    await UsageStats.grantUsagePermission();
     return;
   }
 
@@ -42,7 +42,7 @@ Future<void> onOpeningInstagram() async {
     if (rt <= 0) {
       if (!await FlutterOverlayWindow.isActive()) {
         await FlutterOverlayWindow.showOverlay(
-          height: WindowSize.matchParent,
+          height: WindowSize.fullCover,
           width: WindowSize.matchParent,
           enableDrag: false,
           overlayTitle: "Blocked",

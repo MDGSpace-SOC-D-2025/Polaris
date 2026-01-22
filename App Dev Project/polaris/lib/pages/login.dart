@@ -13,13 +13,16 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  // service
   LoginService loginService = LoginService();
 
+  // variable
   final emailInput = TextEditingController();
   final passwordInput = TextEditingController();
 
-  bool openFirst = true;
+  bool openFirst = true; // variable to give permission to app
 
+  // functions - for logging in the user on clicking submit button
   void loginUserOnClick() async {
     bool loginSuccessful = await loginService.loginUserList(
       email: emailInput.text,
@@ -48,10 +51,11 @@ class _LoginState extends State<Login> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Login Page"),
+          Text('Login Page'),
 
-          InputBox(inputText: "Email", input: emailInput),
-          InputBox(inputText: "Password", input: passwordInput),
+          InputBox(inputText: 'Email', input: emailInput),
+          InputBox(inputText: 'Password', input: passwordInput),
+
           SizedBox(height: 25),
 
           FilledButton(
@@ -72,7 +76,7 @@ class _LoginState extends State<Login> {
                 MaterialPageRoute(builder: (context) => SignUp()),
               );
             },
-            child: Text("Not a member? SignUp"),
+            child: Text('Not a member? SignUp'),
           ),
         ],
       ),

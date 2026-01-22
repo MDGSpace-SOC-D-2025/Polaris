@@ -5,6 +5,8 @@ import 'package:polaris/pages/login.dart';
 import 'package:flutter_accessibility_service/flutter_accessibility_service.dart';
 import 'dart:async';
 
+import 'package:polaris/pages/signup.dart';
+
 @pragma("vm:entry-point")
 void overlayMain() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,29 +51,29 @@ Future<void> handleAppChange(String packageName) async {
 
   print("App changed from $lastApp to $packageName");
 
-  if (packageName == "com.instagram.android") {
-    if (lastApp != "com.instagram.android") {
-      instagramStartTime = DateTime.now();
-      print("Instagram session STARTED at $instagramStartTime");
-    }
+  if (packageName == "com.instagram.android" &&
+      lastApp != "com.instagram.android") {
+    instagramStartTime = DateTime.now();
+    print("Instagram session STARTED at $instagramStartTime");
     await onOpeningInstagram();
-  } else if (lastApp == "com.instagram.android") {
+  }
+
+  if (packageName != "com.instagram.android" &&
+      lastApp == "com.instagram.android") {
     if (instagramStartTime != null) {
-      int durationMs = DateTime.now()
+      int durationMin = DateTime.now()
           .difference(instagramStartTime!)
-          .inMilliseconds;
-      int durationMin = durationMs ~/ 60000;
+          .inMinutes;
 
       print("Instagram session ended. Duration: $durationMin minutes");
 
       final rt = await rewardtimeBlockingService.getRewardTimeUser();
-      int newRewardTime = rt - durationMin;
+      int newRt = rt - durationMin;
+      await rewardtimeBlockingService.setRewardTimeUser(newRt);
 
-      print("Was: $rt, Now: $newRewardTime");
+      print("Was: $rt, Now: $newRt");
 
-      await rewardtimeBlockingService.setRewardTimeUser(newRewardTime);
-
-      if (newRewardTime <= 0) {
+      if (newRt <= 0) {
         await rewardtimeBlockingService.setRewardTimeUser(0);
         if (!await FlutterOverlayWindow.isActive()) {
           await FlutterOverlayWindow.showOverlay(
@@ -87,10 +89,12 @@ Future<void> handleAppChange(String packageName) async {
       }
       instagramStartTime = null;
     }
+
     if (await FlutterOverlayWindow.isActive()) {
       await FlutterOverlayWindow.closeOverlay();
     }
   }
+
   lastApp = packageName;
 }
 
@@ -124,9 +128,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: "AverialLibre",
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF141C2F)),
+        primarySwatch: Colors.blueGrey,
       ),
-      home: Login(),
+      home: SignUp(),
     );
   }
 }

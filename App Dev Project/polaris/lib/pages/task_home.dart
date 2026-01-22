@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:polaris/integration/rewardTime_integrate.dart';
 import 'package:polaris/integration/todo_integrate.dart';
 import 'package:polaris/pages/todo.dart';
@@ -12,18 +13,24 @@ class Task extends StatefulWidget {
 }
 
 class _TaskState extends State<Task> {
+  // service
   final ToDoService todoService = ToDoService();
   final RewardTimeService rewardtimeService = RewardTimeService();
 
   //to do list LIST
   List<dynamic> todoList = [];
 
+  //variable
   final todoTask = TextEditingController();
 
   var displayRewardtime = 0;
 
+  var dateString = DateFormat('d/M/y').format(DateTime.now());
+
   Timer? refreshTimer;
 
+  // function
+  // to initialize this page
   @override
   void initState() {
     super.initState();
@@ -35,6 +42,7 @@ class _TaskState extends State<Task> {
     });
   }
 
+  // to get all the task of the specific user
   void getTask() async {
     print('getting tasks');
     var task = await todoService.getToDo();
@@ -45,6 +53,7 @@ class _TaskState extends State<Task> {
     });
   }
 
+  // to get the reward time from backend and display in frontend
   void loadDisplayRewardTime() async {
     final val = await rewardtimeService.getRewardTimeUser();
     setState(() {
@@ -52,7 +61,7 @@ class _TaskState extends State<Task> {
     });
   }
 
-  //addNewTask dialog box
+  // dialog box to add new task
   void addNewTask(BuildContext context) {
     showDialog(
       context: context,
@@ -129,7 +138,8 @@ class _TaskState extends State<Task> {
       body: RefreshIndicator(
         onRefresh: () async {
           await Future.wait(
-            [getTask(), loadDisplayRewardTime()] as Iterable<Future<dynamic>>,
+            [getTask(), loadDisplayRewardTime()]
+                as Iterable<Future<dynamic>>, ////
           );
         },
 
@@ -148,7 +158,7 @@ class _TaskState extends State<Task> {
                     ),
                     child: Center(
                       child: Text(
-                        "Date",
+                        dateString,
                         style: TextStyle(
                           fontFamily: "AverialLibre",
                           fontSize: 20,
@@ -170,7 +180,7 @@ class _TaskState extends State<Task> {
                     ),
                     child: Center(
                       child: Text(
-                        "$displayRewardtime",
+                        "$displayRewardtime min left",
                         style: TextStyle(
                           fontFamily: "AverialLibre",
                           fontSize: 20,
@@ -192,7 +202,8 @@ class _TaskState extends State<Task> {
 
                   return ToDoList(
                     taskName: currentTask['taskName'],
-                    taskDone: (currentTask['taskDone'] == true),
+                    taskDone:
+                        currentTask['taskDone'], // (currentTask['taskDone'] == true),
                     onDone: () async {
                       await rewardtimeService.completeToDo(
                         id: currentTask['_id'],
@@ -216,7 +227,9 @@ class _TaskState extends State<Task> {
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
         backgroundColor: Color(0xFFC3A372),
-        onPressed: () => addNewTask(context),
+        onPressed: () {
+          addNewTask(context);
+        },
         child: Icon(Icons.add, color: Color(0xFF292B3A)),
       ),
     );
