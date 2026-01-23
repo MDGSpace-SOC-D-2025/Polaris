@@ -5,12 +5,11 @@ const app = express()
 const cors = require('cors')
 const toDoRouter = require('./routers/todo.router')
 const userRouter = require('./routers/user.router')
-
-// const mongodb = require('./config/mongodb')
-// const toDoModel = require('./model/todo.model')
-// const toDoController = require('./controller/todo.controller')
-// const userModel = require('./model/user.model')
-// const userController = require('./controller/user.controller')
+const mongodb = require('./config/mongodb')
+const toDoModel = require('./model/todo.model')
+const toDoController = require('./controller/todo.controller')
+const userModel = require('./model/user.model')
+const userController = require('./controller/user.controller')
 
 const port = 3000
 

@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserService {
-  String baseUrl = "http://10.81.66.249:3000/user/register";
+  String baseUrl = "http://10.81.67.57:3000/user/register";
   Future<void> registerUserList({
     required String email,
     required String userId,
@@ -20,7 +21,13 @@ class UserService {
       );
 
       if (response.statusCode == 200) {
-        jsonDecode(response.body);
+        // jsonDecode(response.body);
+        final user = jsonDecode(response.body);
+        String token = user["token"];
+        print("Token from login_integrate.dart: $token");
+
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('jwt_token', token);
       } else {
         print("unsuccessful ${response.statusCode}");
       }

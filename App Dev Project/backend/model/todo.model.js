@@ -1,4 +1,3 @@
-const mongodb = require('../config/mongodb')
 const mongoose = require('mongoose')
 // const user = require('./user.model')
 

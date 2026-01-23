@@ -33,7 +33,7 @@ const loginUser = async (req, res) => {
     }
       
     const match = await bcrypt.compare(password, user.password)
-    if (!match){
+    if (!match) {
       return res.status(400).json({message: "Incorrect user credentials"})
     }
     
@@ -90,7 +90,7 @@ const onCompleteTodo = async (req, res) => {
   try {
     const task = await toDoModel.findById(req.params.id)
     
-    if (!task){
+    if (!task) {
       return res.status(400).json({message: "to do not found"})
     }
     
