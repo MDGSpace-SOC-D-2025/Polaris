@@ -1,6 +1,6 @@
 const mongodb = require('../config/mongodb')
 const mongoose = require('mongoose')
-//const user = require('./user.model')
+// const user = require('./user.model')
 
 const toDoSchema = new mongoose.Schema({
     taskName: {
@@ -13,8 +13,9 @@ const toDoSchema = new mongoose.Schema({
     },
     user_id: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User',
+        ref: 'user',
         required: true
+        // user_id is the _id (ObjectId) from userSchema
     }
 });
 

@@ -49,8 +49,7 @@ const loginUser = async (req, res) => {
     })
   } catch (error) {
     console.error(error)
-  }
-    
+  } 
 };
 
 const toGetRewardTime = async (req, res) => {
@@ -58,7 +57,7 @@ const toGetRewardTime = async (req, res) => {
     const user = await userModel.findById(req.userId)
     
     if (!user) {
-      return res.status(404).json({ error: "User not found in toGetRewardTime" })
+      return res.status(404).json({error: "User not found in toGetRewardTime"})
     }
     
     const rewardtimeOfUser = user.rewardTime
@@ -77,7 +76,7 @@ const toSetRewardTime = async (req, res) => {
       {new: true}
     )
     if (!user) {
-      return res.status(404).json({ error: "User not found in toSetRewardTime" })
+      return res.status(404).json({error: "User not found in toSetRewardTime"})
     }
     
     const rewardtimeOfUser = user.rewardTime
