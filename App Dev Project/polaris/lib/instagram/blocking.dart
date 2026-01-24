@@ -44,10 +44,8 @@ Future<void> onOpeningInstagram() async {
         await FlutterOverlayWindow.showOverlay(
           height: WindowSize.fullCover,
           width: WindowSize.matchParent,
-          enableDrag: false,
           overlayTitle: "Blocked",
           overlayContent: "Instagram Blocked",
-          flag: OverlayFlag.defaultFlag,
           visibility: NotificationVisibility.visibilityPublic,
         );
       }

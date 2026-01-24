@@ -13,16 +13,7 @@ void overlayMain() {
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Material(
-        child: Text(
-          "INSTAGRAM BLOCKED",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            color: Color(0xFF292B3A),
-          ),
-        ),
-      ),
+      home: Material(child: Text("My overlay")),
     ),
   );
 }
@@ -37,7 +28,7 @@ void startMonitoring() {
 
     debounceTimer?.cancel();
 
-    debounceTimer = Timer(Duration(milliseconds: 800), () async {
+    debounceTimer = Timer(Duration(milliseconds: 1000), () async {
       if (event.packageName != null) {
         await handleAppChange(event.packageName!);
       }
@@ -78,10 +69,8 @@ Future<void> handleAppChange(String packageName) async {
           await FlutterOverlayWindow.showOverlay(
             height: WindowSize.fullCover,
             width: WindowSize.matchParent,
-            enableDrag: false,
             overlayTitle: "Blocked",
             overlayContent: "Instagram Blocked",
-            flag: OverlayFlag.defaultFlag,
             visibility: NotificationVisibility.visibilityPublic,
           );
         }
