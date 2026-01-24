@@ -67,14 +67,13 @@ class _TaskState extends State<Task> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Color(0xFFC2A273),
+          backgroundColor: Color(0xFF89DC8C),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25),
           ),
           title: Text(
             "New Task",
             style: TextStyle(
-              fontFamily: "Miniver",
               fontSize: 30,
               fontWeight: FontWeight.bold,
               color: Color(0xFF141C2F),
@@ -121,16 +120,15 @@ class _TaskState extends State<Task> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF38404F),
+      backgroundColor: Color(0xFFF5F5F5),
       appBar: AppBar(
-        backgroundColor: Color(0xFF141C2F),
+        backgroundColor: Color(0xFF5794F2),
         title: Text(
           "To Do List",
           style: TextStyle(
-            fontFamily: "Miniver",
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            color: Color(0xFFA1772D),
+            color: Color(0xFF000000),
           ),
         ),
       ),
@@ -144,6 +142,7 @@ class _TaskState extends State<Task> {
         },
 
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -154,13 +153,12 @@ class _TaskState extends State<Task> {
                     margin: const EdgeInsets.only(right: 15, top: 15, left: 15),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Color(0xFFC2A273),
+                      color: Color(0xFF89DC8C),
                     ),
                     child: Center(
                       child: Text(
                         dateString,
                         style: TextStyle(
-                          fontFamily: "AverialLibre",
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF292B3A),
@@ -176,13 +174,12 @@ class _TaskState extends State<Task> {
                     margin: const EdgeInsets.only(right: 15, top: 15),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Color(0xFFC2A273),
+                      color: Color(0xFF89DC8C),
                     ),
                     child: Center(
                       child: Text(
                         "$displayRewardtime min left",
                         style: TextStyle(
-                          fontFamily: "AverialLibre",
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF292B3A),
@@ -226,11 +223,11 @@ class _TaskState extends State<Task> {
 
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
-        backgroundColor: Color(0xFFC3A372),
+        backgroundColor: Color(0xFF89DC8C),
         onPressed: () {
           addNewTask(context);
         },
-        child: Icon(Icons.add, color: Color(0xFF292B3A)),
+        child: Icon(Icons.add, color: Color(0xFF000000)),
       ),
     );
   }

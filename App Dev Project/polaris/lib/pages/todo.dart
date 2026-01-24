@@ -25,38 +25,44 @@ class ToDoListState extends State<ToDoList> {
     return Container(
       margin: EdgeInsets.only(top: 20, left: 20, right: 20),
       height: 60,
-      padding: EdgeInsets.all(15),
+      padding: EdgeInsets.all(7),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Color(0xFF141C2F)),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: Color(0xFF000000)),
       ),
 
       child: Row(
         children: [
-          Checkbox(
-            value: widget.taskDone,
-            side: BorderSide(color: Color(0xFFF6F2E5)),
-            activeColor: Colors.amber,
-            onChanged: (bool? value) {
-              widget.onDone();
-            },
+          Transform.scale(
+            scale: 1.37,
+            child: Checkbox(
+              value: widget.taskDone,
+              side: BorderSide(color: Color(0xFFCBCBCB)),
+              shape: CircleBorder(),
+              activeColor: Color(0xFFCBCBCB),
+              checkColor: Color(0xFF000000),
+              onChanged: (bool? value) {
+                widget.onDone();
+              },
+            ),
           ),
 
           Text(
             widget.taskName,
             style: TextStyle(
-              fontFamily: "AverialLibre",
-              fontSize: 20,
+              fontSize: 21,
               fontWeight: FontWeight.normal,
-              color: Color(0xFFF6F2E5),
+              color: Color(0xFF000000),
               decoration: widget.taskDone
                   ? TextDecoration.lineThrough
                   : TextDecoration.none,
-              decorationColor: Color(0xFFF6F2E5),
+              decorationColor: Color(0xFF000000),
               decorationThickness: 2.0,
               decorationStyle: TextDecorationStyle.solid,
             ),
           ),
+
+          Spacer(),
 
           IconButton(onPressed: (widget.onDelete), icon: Icon(Icons.delete)),
         ],

@@ -44,6 +44,7 @@ dependencies:
   flutter_accessibility_service: ^1.0.0
   flutter_overlay_window: ^0.5.0
   intl: ^0.20.2
+  google_fonts: ^8.0.0
 
 dev_dependencies:
   flutter_test:
@@ -95,6 +96,9 @@ flutter:
     - family: Miniver
       fonts:
         - asset: fonts/Miniver-Regular.ttf
+    - family: Inter
+      fonts:
+        - asset: fonts/Inter-VariableFont_opsz,wght.ttf
         
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

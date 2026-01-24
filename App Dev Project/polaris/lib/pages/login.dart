@@ -48,20 +48,24 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF5F5F5),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Login Page'),
+          Text('Login Page', style: TextStyle(fontSize: 24)),
 
           InputBox(inputText: 'Email', input: emailInput),
           InputBox(inputText: 'Password', input: passwordInput),
 
           SizedBox(height: 25),
 
-          FilledButton(
-            style: FilledButton.styleFrom(
-              backgroundColor: Colors.teal,
-              foregroundColor: Colors.white,
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xFF89DC8C),
+              foregroundColor: Color(0xFF000000),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18),
+              ),
             ),
             onPressed: loginUserOnClick,
             child: const Text('Submit'),

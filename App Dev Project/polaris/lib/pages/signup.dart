@@ -37,10 +37,11 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF5F5F5),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('SignUp Page'),
+          Text('SignUp Page', style: TextStyle(fontSize: 24)),
 
           InputBox(inputText: 'Email', input: emailInput),
           InputBox(inputText: 'User Id', input: userIdInput),
@@ -48,10 +49,13 @@ class _SignUpState extends State<SignUp> {
 
           SizedBox(height: 25),
 
-          FilledButton(
-            style: FilledButton.styleFrom(
-              backgroundColor: Colors.teal,
-              foregroundColor: Colors.white,
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xFF89DC8C),
+              foregroundColor: Color(0xFF000000),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18),
+              ),
             ),
             onPressed: registerUserOnClick,
             child: const Text('Submit'),

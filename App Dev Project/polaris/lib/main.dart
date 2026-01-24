@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_overlay_window/flutter_overlay_window.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:polaris/instagram/blocking.dart';
 import 'package:polaris/pages/login.dart';
 import 'package:flutter_accessibility_service/flutter_accessibility_service.dart';
@@ -16,7 +17,6 @@ void overlayMain() {
         child: Text(
           "INSTAGRAM BLOCKED",
           style: TextStyle(
-            fontFamily: "AverialLibre",
             fontSize: 20,
             fontWeight: FontWeight.w500,
             color: Color(0xFF292B3A),
@@ -125,10 +125,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: "AverialLibre",
-        primarySwatch: Colors.blueGrey,
-      ),
+      theme: ThemeData(textTheme: GoogleFonts.interTextTheme()),
       home: Login(),
     );
   }
