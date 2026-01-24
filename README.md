@@ -10,14 +10,14 @@ Polaris is an app that utilises a simple task–reward mechanism to reduce scree
 ### User Interface
 | Description | Screenshot |
 | ------------- | ------------- |
-| Login Page | ![8ccafb52-99e6-48b7-9562-9e5d511f6888](https://github.com/user-attachments/assets/ba19b70f-625d-4043-b341-1c6a7d3d1b28) |
+| Login Page |  |
 | Sign Up Page | ![66132d4b-521b-45e7-8b21-129097f810ee](https://github.com/user-attachments/assets/3f64809e-a95a-46c3-b6b3-717848856f6c) |
 | Home Page | ![19a28e3d-ad23-4707-87c0-ea47742b0a03](https://github.com/user-attachments/assets/4c7f4f53-e8a7-46c1-ab2a-fd21eec0bcd2) |
 | New Task Dialog Box | ![2b0e3db1-d1e5-447e-b107-e43db1122910](https://github.com/user-attachments/assets/2a82a6b6-f2e3-443b-a724-2ef44a76f54f) |
 
 ### Tech Stack
 | Component | Technology | Version |
-| ------------- | ------------- |
+| ------------- | ------------- | ------------- | 
 | Frontend  | Flutter | 3.38.5 |
 | Backend  | Express Js | 5.2.1 |
 | Database  | MongoDB | 8.2.3 |
