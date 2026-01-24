@@ -10,10 +10,10 @@ Polaris is an app that utilises a simple task–reward mechanism to reduce scree
 ### User Interface
 | Description | Screenshot |
 | ------------- | ------------- |
-| Login Page | <img src="![login](https://github.com/user-attachments/assets/a0f07a52-6718-49c6-a11a-3c7e464c0af1)" style="height: 25%;"> |
-| Sign Up Page | ![66132d4b-521b-45e7-8b21-129097f810ee](https://github.com/user-attachments/assets/3f64809e-a95a-46c3-b6b3-717848856f6c) |
-| Home Page | ![19a28e3d-ad23-4707-87c0-ea47742b0a03](https://github.com/user-attachments/assets/4c7f4f53-e8a7-46c1-ab2a-fd21eec0bcd2) |
-| New Task Dialog Box | ![2b0e3db1-d1e5-447e-b107-e43db1122910](https://github.com/user-attachments/assets/2a82a6b6-f2e3-443b-a724-2ef44a76f54f) |
+| Login Page | ![32089121-3174-4043-859e-542b4c13cf77](https://github.com/user-attachments/assets/3f5300bd-223b-48c8-bb24-7e83079f5416 | height=50) |
+| Sign Up Page | ![66132d4b-521b-45e7-8b21-129097f810ee](https://github.com/user-attachments/assets/3f64809e-a95a-46c3-b6b3-717848856f6c | height=50) |
+| Home Page | ![19a28e3d-ad23-4707-87c0-ea47742b0a03](https://github.com/user-attachments/assets/4c7f4f53-e8a7-46c1-ab2a-fd21eec0bcd2 | height=50) |
+| New Task Dialog Box | ![2b0e3db1-d1e5-447e-b107-e43db1122910](https://github.com/user-attachments/assets/2a82a6b6-f2e3-443b-a724-2ef44a76f54f | height=50) |
 
 ### Tech Stack
 | Component | Technology | Version |
@@ -22,5 +22,5 @@ Polaris is an app that utilises a simple task–reward mechanism to reduce scree
 | Backend  | Express Js | 5.2.1 |
 | Database  | MongoDB | 8.2.3 |
 
-###### Note: As of now, the project is only implemented on Instagram.
+##### Note: As of now, the project is only implemented on Instagram.
  
