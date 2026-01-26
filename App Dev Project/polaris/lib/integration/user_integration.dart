@@ -21,7 +21,6 @@ class UserService {
       );
 
       if (response.statusCode == 200) {
-        // jsonDecode(response.body);
         final user = jsonDecode(response.body);
         String token = user["token"];
         print("Token from login_integrate.dart: $token");

@@ -17,10 +17,10 @@ class _TaskState extends State<Task> {
   final ToDoService todoService = ToDoService();
   final RewardTimeService rewardtimeService = RewardTimeService();
 
-  //to do list LIST
+  // to do list LIST
   List<dynamic> todoList = [];
 
-  //variable
+  // variable
   final todoTask = TextEditingController();
 
   var displayRewardtime = 0;
@@ -136,8 +136,7 @@ class _TaskState extends State<Task> {
       body: RefreshIndicator(
         onRefresh: () async {
           await Future.wait(
-            [getTask(), loadDisplayRewardTime()]
-                as Iterable<Future<dynamic>>, ////
+            [getTask(), loadDisplayRewardTime()] as Iterable<Future<dynamic>>,
           );
         },
 

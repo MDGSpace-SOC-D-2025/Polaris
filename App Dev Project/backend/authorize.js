@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 function authorize(req, res, next) {
-    const authHeader = req.get('Authorization') ////
+    const authHeader = req.get('Authorization')
 
     if (!authHeader) {
         return res.status(401).json({error: "Authorization header missing"})
@@ -15,7 +15,7 @@ function authorize(req, res, next) {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
-        req.userId = decoded.userId; ////
+        req.userId = decoded.userId;
         next()
     } catch (e) {
         res.status(401).send({error: "token not found"})

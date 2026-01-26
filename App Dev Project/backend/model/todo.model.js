@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-// const user = require('./user.model')
 
 const toDoSchema = new mongoose.Schema({
     taskName: {
