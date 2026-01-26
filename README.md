@@ -8,9 +8,11 @@ Polaris is an app that utilises a simple task–reward mechanism to reduce scree
 ![Polaris (1)](https://github.com/user-attachments/assets/11330366-0a0e-4300-9085-3e6340d32456)
 
 ### Tech Stack
-- Frontend: Flutter
-- Backend: Express Js
-- Database: MongoDB
+| Component | Technology | Version |
+| ------------- | ------------- | ------------- | 
+| Frontend  | Flutter | 3.38.5 |
+| Backend  | Express Js | 5.2.1 |
+| Database  | MongoDB | 8.2.3 |
 
-###### Note: As of now, the project is only implemented on Instagram.
+##### Note: As of now, the project is only implemented on Instagram.
  
