@@ -5,7 +5,6 @@ import 'package:polaris/instagram/blocking.dart';
 import 'package:polaris/pages/login.dart';
 import 'package:flutter_accessibility_service/flutter_accessibility_service.dart';
 import 'dart:async';
-import 'package:polaris/pages/signup.dart';
 
 @pragma("vm:entry-point")
 void overlayMain() {

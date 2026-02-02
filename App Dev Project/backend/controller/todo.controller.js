@@ -15,7 +15,6 @@ const addToDo = async (req, res) => {
 
 const deleteToDo = async (req, res) => {
   await toDoModel.findByIdAndDelete({_id: req.params.id, user_id: req.userId})
-  // await toDoModel.findByIdAndDelete({_id: req.params.id})
   res.json({message: "Todo deleted"})
 };
 
