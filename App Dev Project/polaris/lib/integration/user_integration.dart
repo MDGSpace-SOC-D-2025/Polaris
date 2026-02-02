@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserService {
-  String baseUrl = "http://10.61.61.181:3000/user/register";
+  String baseUrl = "http://10.81.69.149:3000/user/register";
   Future<void> registerUserList({
     required String email,
     required String userId,
